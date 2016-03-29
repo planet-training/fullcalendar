@@ -51,7 +51,7 @@ module.exports = function(grunt) {
 
 
 	function getLangJS(langCode, momentPath) {
-		
+
 		var shortLangCode;
 		var momentLangJS;
 		var datepickerLangJS;
@@ -97,6 +97,9 @@ module.exports = function(grunt) {
 			'(function(factory) {',
 			'    if (typeof define === "function" && define.amd) {',
 			'        define([ "jquery", "moment" ], factory);',
+			'    }',
+			'    else if (typeof Meteor === "object" && typeof exports === "object") {',
+			'        module.exports = factory(require("meteor/jquery").jQuery, require("moment"));',
 			'    }',
 			'    else if (typeof exports === "object") {',
 			'        module.exports = factory(require("jquery"), require("moment"));',

@@ -8,6 +8,9 @@
 	if (typeof define === 'function' && define.amd) {
 		define([ 'jquery', 'moment' ], factory);
 	}
+	else if (typeof Meteor === 'object' && typeof exports === 'object') { // Node/CommonJS
+		module.exports = factory(require('meteor/jquery').jQuery, require('moment'));
+	}
 	else if (typeof exports === 'object') { // Node/CommonJS
 		module.exports = factory(require('jquery'), require('moment'));
 	}
